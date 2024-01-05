@@ -1,0 +1,160 @@
+<!-- header.xhtml -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+	<title>Ajouter stage Content</title>
+</h:head>
+<c:choose>
+	<c:when test="#{userRole eq 'chef' or userRole eq 'admin'}">
+
+		<h:body>
+			<!-- Ajouter Modal -->
+			<div class="modal" id="modal-ajouter-stagiaire" tabindex="-1"
+				role="dialog" aria-labelledby="modal-ajouter-stagiaire"
+				aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="block block-rounded shadow-none mb-0">
+							<div class="block-header block-header-default">
+								<h3 class="block-title">Ajouter Un Stagiaire</h3>
+								<div class="block-options">
+									<button type="button" class="btn-block-option"
+										data-bs-dismiss="modal" aria-label="Close">
+										<i class="fa fa-times"></i>
+
+
+									</button>
+								</div>
+							</div>
+							<!-- jQuery Validation (.js-validation class is initialized in js/pages/be_forms_validation.min.js which was auto compiled from _js/pages/be_forms_validation.js) -->
+							<!-- For more examples you can check out https://github.com/jzaefferer/jquery-validation -->
+
+
+							<h:form class="js-validation" id="addForm-stagiaire">
+								<div class="block-content block-content-full">
+									<!-- Regular -->
+									<div class="row items-push">
+												<div class="m-3">
+
+			<h:messages for="nom" class="container alert alert-danger"
+				style="color:red;" />
+			<h:messages for="prenom" class="container alert alert-danger"
+				style="color:red;" />
+
+
+		</div>
+										<div class="col">
+											<div class="row">
+
+
+
+												<div class="col-6 mb-4">
+													<label class="form-label">Nom<span
+														class="text-danger">*</span></label>
+													<h:inputText id="nom" type="text" class="form-control "
+														name="nom" required="true"
+														value="#{StagiaireManagedBean.nom}"
+														placeholder="Entrer le nom du stagiaire : " />
+												</div>
+
+
+												<div class="col-6 mb-4">
+													<label class="form-label">Prenom<span
+														class="text-danger">*</span></label>
+													<h:inputText id="prenom" type="text" class="form-control " name="sujet"
+														value="#{StagiaireManagedBean.prenom}" required="true"
+														placeholder="Entrer le prenom stagiaire : " />
+												</div>
+
+												<div class="col-6 mb-4">
+													<label class="form-label">CIN<span
+														class="text-danger">*</span></label>
+													<h:inputText type="text" class="form-control " name="sujet"
+														required="true" value="#{StagiaireManagedBean.cin}"
+														placeholder="Entrer le CIN : " />
+												</div>
+
+												<div class="col-6 mb-4">
+													<label class="form-label">Date Naissance<span
+														class="text-danger">*</span></label>
+													<h:inputText type="text" class="js-flatpickr form-control"
+														required="true" value="#{StagiaireManagedBean.dateN}"
+														placeholder="Entrer la date naissance du stagiaire :">
+														<f:convertDateTime pattern="yyyy-MM-dd" required="true" />
+													</h:inputText>
+												</div>
+
+
+
+												<div class="col-6 mb-4">
+													<label class="form-label">Email<span
+														class="text-danger">*</span></label>
+													<h:inputText type="text" class="form-control " name="sujet"
+														required="true" value="#{StagiaireManagedBean.email}"
+														placeholder="Entrer email : " />
+												</div>
+
+
+
+												<div class="col-6 mb-4">
+													<label class="form-label">Ecole<span
+														class="text-danger">*</span></label>
+													<h:inputText type="text" class="form-control " name="sujet"
+														required="true" value="#{StagiaireManagedBean.ecole}"
+														placeholder="Entrer ecole : " />
+												</div>
+												<c:if test="#{userRole eq 'chef'}">
+													<div class="mb-4">
+														<h:selectOneMenu class="form-select"
+															value="#{StagiaireManagedBean.selectedStageID}">
+															<f:selectItem selected="true"
+																itemLabel="-- Select Stage --" class="select-label"
+																itemValue="#{1}" />
+															<f:selectItems value="#{StageManagedBean.stages}" var="s"
+																itemLabel="#{s.sujet_stage}" itemValue="#{s.id_stage}" />
+														</h:selectOneMenu>
+													</div>
+
+													<div class="mb-4">
+														<h:selectOneMenu class="form-select"
+															value="#{StagiaireManagedBean.selectedEncadrantID}">
+															<f:selectItem selected="true"
+																itemLabel="-- Select Encadrant --" class="select-label"
+																itemValue="#{1}" />
+															<f:selectItems value="#{EncadrantManagedBean.encadrants}"
+																var="e" itemLabel="#{e.cin}" itemValue="#{e.id}" />
+														</h:selectOneMenu>
+													</div>
+												</c:if>
+
+											</div>
+										</div>
+									</div>
+									<!-- END Regular -->
+									<div class="border-top d-flex justify-content-end">
+										<button type="button" class="btn btn-alt-secondary mt-3 m-1"
+											data-bs-dismiss="modal">Annuler</button>
+										<h:commandButton class="btn btn-alt-primary mt-3 m-1"
+											data-bs-dismiss="modal" value="Ajouter"
+											action="#{StagiaireManagedBean.addStagiaire}" />
+									</div>
+								</div>
+							</h:form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- END Ajouter Modal -->
+
+		</h:body>
+	</c:when>
+	<c:otherwise>
+		<ui:include src="/errors/error403.xhtml" />
+	</c:otherwise>
+</c:choose>
+
+</html>

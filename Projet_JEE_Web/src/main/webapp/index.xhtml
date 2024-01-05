@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+	<meta charset="utf-8" />
+	<title>Aji Tstagi</title>
+	<h:outputStylesheet name="assets/css/codebase.min.css" />
+	<h:outputStylesheet name="assets/css/themes/corporate.min.css" />
+
+</h:head>
+<h:body>
+
+	<div id="page-container"
+		class="main-content-boxed page-header-fixed page-header-glass remember-theme">
+
+		<ui:include src="navigation/header_accueil.xhtml" />
+
+		<!-- Main Container -->
+		<main id="main-container">
+
+			<!-- Page Content -->
+			<div class="bg-image"
+				style="background-image: url('/Projet_JEE_Web/resources/assets/images/bg-image2.jpg');">
+				<div class="hero bg-primary-dark-op">
+					<div class="hero-inner">
+						<div class="content content-full text-center">
+							<h1 class="display-4 fw-bold mb-2 ">
+								<span class="text-white">Aji</span> <span class="text-primary">Tstagi</span>
+							</h1>
+							<h2 class="fw-normal text-white-75 mb-5">Gérez Votre Avenir
+								Professionnel avec Nos Stages!</h2>
+							<a class="btn btn-alt-primary rounded-pill px-4 py-2"
+								href="login.xhtml"> <i class="si si-login opacity-70 me-1"></i>
+								LOGIN
+							</a> <a class="btn btn-primary rounded-pill px-4 py-2"
+								href="inscription_stagiaire.xhtml"> <i
+								class="fa fa-rocket opacity-50 me-1"></i> COMMENCER
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+			<!-- Page Content video version -->
+
+<!-- 						<div class="bg-video" -->
+<!-- 							data-vide-bg="/Projet_JEE_Web/resources/assets/videos/city_night" -->
+<!-- 							data-vide-options="posterType: jpg"> -->
+
+<!-- 							<div class="hero bg-primary-dark-op"> -->
+<!-- 								<div class="hero bg-black-50"> -->
+<!-- 									<div class="hero-inner"> -->
+<!-- 										<div class="content content-full text-center"> -->
+<!-- 											<h1 class="display-4 fw-bold mb-2 "> -->
+<!-- 												<span class="text-white">Aji</span> <span class="text-primary">Tstagi</span> -->
+<!-- 											</h1> -->
+<!-- 											<h2 class="fw-normal text-white-75 mb-5">Gérez Votre Avenir -->
+<!-- 												Professionnel avec Nos Stages!</h2> -->
+<!-- 											<a class="btn btn-alt-primary rounded-pill px-4 py-2 " -->
+<!-- 												href="login.xhtml"> <i class="si si-login opacity-80 me-1"></i> -->
+<!-- 												LOGIN -->
+<!-- 											</a> <a class="btn btn-primary rounded-pill px-4 py-2 " -->
+<!-- 												href="inscription_stagiaire.xhtml"> <i -->
+<!-- 												class="fa fa-rocket opacity-50 me-1"></i> COMMENCER -->
+<!-- 											</a> -->
+<!-- 										</div> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
+
+
+<!-- 							</div> -->
+<!-- 						</div> -->
+
+			<!-- END Page Content -->
+		</main>
+		<!-- END Page Container -->
+			<ui:include src="/navigation/footer.xhtml" />
+
+	</div>
+
+
+
+	<h:outputScript name="assets/js/codebase.app.min.js" />
+
+	<h:outputScript name="assets/js/lib/jquery.min.js" />
+
+	<h:outputScript name="assets/js/plugins/jquery-vide/jquery.vide.min.js" />
+
+</h:body>
+</html>

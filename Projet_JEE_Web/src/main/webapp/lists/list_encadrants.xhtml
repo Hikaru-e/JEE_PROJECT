@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+	<title>Liste des Encadrants</title>
+
+
+</h:head>
+
+<c:choose>
+	<c:when test="#{userRole eq 'chef'}">
+<h:body>
+	<div id="page-container"
+		class="sidebar-o sidebar-mini enable-page-overlay side-scroll page-header-fixed remember-theme page-header-modern main-content-narrow">
+
+		<!-- Side Overlay-->
+		<c:choose>
+			<c:when test="#{userRole eq 'chef'}">
+				<ui:include src="/navigation/sidebar_chef.xhtml" />
+			</c:when>
+
+			<!-- Include admin content if the user has the "admin" role -->
+			<c:when test="#{userRole eq 'admin'}">
+				<ui:include src="/navigation/sidebar_admin.xhtml" />
+			</c:when>
+		</c:choose>
+
+		<ui:include src="/navigation/header.xhtml" />
+
+
+		<!-- Main Container -->
+		<main id="main-container">
+
+			<!-- Page Content -->
+			<div class="content">
+				<!-- Dynamic Table Full -->
+				<div class="block block-rounded">
+					<div class="block-header block-header-default">
+						<h3 class="block-title">Liste des Encadrants</h3>
+					</div>
+					<div class="block-content block-content-full">
+						<!-- CRUD Buttons start -->
+						<div class="mb-4 d-flex justify-content-center">
+							<div class="btn-group" role="group"
+								aria-label="Horizontal Primary">
+								<button type="button" class="btn btn-alt-primary p-3"
+									data-bs-toggle="modal"
+									data-bs-target="#modal-ajouter-encadrant">
+									<i class="fa fa-add"></i> Ajouter
+								</button>
+
+							</div>
+						</div>
+						<!-- CRUD Buttons end -->
+						<h:form>
+							<!-- DataTables functionality is initialized with .js-dataTable-full class in js/pages/be_tables_datatables.min.js which was auto compiled from _js/pages/be_tables_datatables.js -->
+							<h:dataTable value="#{EncadrantManagedBean.encadrants}" var="l"
+								class="table table-bordered table-striped table-vcenter js-dataTable-responsive">
+								<h:column>
+									<f:facet name="header">CIN</f:facet>
+									<h:outputText value="#{l.cin}" class="fw-semibold" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">Nom</f:facet>
+									<h:outputText value="#{l.nom}" class="fw-semibold" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">Prenom</f:facet>
+									<h:outputText value="#{l.prenom}" class="fw-semibold" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">Email</f:facet>
+									<h:outputText value="#{l.email}" class="fw-semibold" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">Division</f:facet>
+									<h:outputText value="#{l.division}" class="fw-semibold" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">Status</f:facet>
+									<h:outputText
+										value="#{EncadrantManagedBean.getEncadrantStatus(l.id)}"
+										styleClass="#{EncadrantManagedBean.getBadgeClass(l)}" />
+								</h:column>
+
+
+								<h:column class="text-center">
+
+									<f:facet name="header">
+										<div class="text-center">Actions</div>
+									</f:facet>
+
+									<h:commandButton value="Delete" styleClass="btn btn-alt-danger"
+										rendered="#{EncadrantManagedBean.getEncadrantStatus(l.id) eq 'NON AFFECTE'}"
+										data-toggle="click-ripple" onclick="return confirmDelete();"
+										action="#{EncadrantManagedBean.deleteEncadrant(l.id)}" />
+
+									<h:commandButton value="Update"
+										styleClass="btn btn-alt-primary m-2"
+										action="#{EncadrantManagedBean.preparerModification(l)}" />
+
+								</h:column>
+							</h:dataTable>
+						</h:form>
+
+					</div>
+				</div>
+				<!-- END Dynamic Table Full -->
+
+			</div>
+			<!-- END Page Content -->
+		</main>
+		<!-- END Main Container -->
+			<ui:include src="/navigation/footer.xhtml" />
+
+	</div>
+	<!-- END Page Container -->
+
+</h:body>
+</c:when>
+    <c:otherwise>
+        <ui:include src="/errors/error403.xhtml" />
+    </c:otherwise>
+</c:choose>
+
+</html>

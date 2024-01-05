@@ -1,0 +1,100 @@
+<!-- header.xhtml -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+	<title>Ajouter Absence </title>
+</h:head>
+<c:choose>
+	<c:when test="#{userRole eq 'chef' or userRole eq 'admin'}">
+
+<h:body>
+	<!-- Ajouter Modal -->
+	<div class="modal" id="modal-ajouter-absence" tabindex="-1"
+		role="dialog" aria-labelledby="modal-ajouter-absence"
+		aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="block block-rounded shadow-none mb-0">
+					<div class="block-header block-header-default">
+						<h3 class="block-title">Ajouter Absence</h3>
+						<div class="block-options">
+							<button type="button" class="btn-block-option"
+								data-bs-dismiss="modal" aria-label="Close">
+								<i class="fa fa-times"></i>
+							</button>
+						</div>
+					</div>
+
+					<!-- jQuery Validation (.js-validation class is initialized in js/pages/be_forms_validation.min.js which was auto compiled from _js/pages/be_forms_validation.js) -->
+					<!-- For more examples you can check out https://github.com/jzaefferer/jquery-validation -->
+					<h:form class="js-validation" id="addForm-absence">
+						<div class="block-content block-content-full">
+							<!-- Regular -->
+							<div class="row items-push">
+
+								<div class="col">
+									<div class="row">
+										<div class="mb-4">
+											<h:selectOneMenu class="form-select"
+												value="#{AbsenceManagedBean.selectedIdStagiaire}">
+												<f:selectItem selected="true" itemLabel="-- Select CIN --"
+													class="select-label" itemValue="#{1}" />
+												<f:selectItems value="#{StagiaireManagedBean.listStagiaire}" var="s"
+													itemLabel="#{s.cin}" itemValue="#{s.id}" />
+											</h:selectOneMenu>
+										</div>
+
+										<div class="col-6 mb-4">
+											<label class="form-label">Date Debut<span
+												class="text-danger">*</span></label>
+											<h:inputText type="text" class="js-flatpickr form-control"
+												value="#{AbsenceManagedBean.date_debut}"
+												placeholder="Entrer la date naissance du stagiaire :">
+												<f:convertDateTime pattern="yyyy-MM-dd" required="true" />
+											</h:inputText>
+										</div>
+
+	                                   <div class="col-6 mb-4">
+											<label class="form-label">Date Fin<span
+												class="text-danger">*</span></label>
+											<h:inputText type="text" class="js-flatpickr form-control"
+												value="#{AbsenceManagedBean.date_fin}"
+												placeholder="Entrer la date naissance du stagiaire :">
+												<f:convertDateTime pattern="yyyy-MM-dd" required="true" />
+											</h:inputText>
+										</div>
+
+
+									</div>
+								</div>
+							</div>
+							<!-- END Regular -->
+							<div
+								class="block-content block-content-full block-content-sm text-end border-top">
+								<button type="button" class="btn btn-alt-secondary m-1"
+									data-bs-dismiss="modal">Annuler</button>
+								<h:commandButton class="btn btn-alt-primary m-1"
+									data-bs-dismiss="modal" value="Ajouter"
+									action="#{AbsenceManagedBean.addAbsence()}" />
+							</div>
+						</div>
+					</h:form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- END Ajouter Modal -->
+
+
+</h:body>
+</c:when>
+    <c:otherwise>
+        <ui:include src="/errors/error403.xhtml" />
+    </c:otherwise>
+</c:choose>
+
+</html>

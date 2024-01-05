@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+	<meta charset="ISO-8859-1" />
+
+	<h:outputStylesheet name="assets/css/codebase.min.css" />
+
+	<h:outputStylesheet
+		name="assets/js/plugins/datatables-bs5/css/dataTables.bootstrap5.min.css" />
+	<h:outputStylesheet
+		name="assets/js/plugins/datatables-buttons-bs5/css/buttons.bootstrap5.min.css" />
+	<h:outputStylesheet
+		name="assets/js/plugins/datatables-responsive-bs5/css/responsive.bootstrap5.min.css" />
+
+	<h:outputStylesheet
+		name="assets/js/plugins/flatpickr/flatpickr.min.css" />
+
+	<h:outputStylesheet name="assets/css/themes/corporate.min.css" />
+</h:head>
+<h:body>
+
+	<ui:include src="/modals/ajouter_stage.xhtml" />
+	<ui:include src="/modals/ajouter_compte.xhtml" />
+	<ui:include src="/modals/ajouter_encadrant.xhtml" />
+	<ui:include src="/modals/ajouter_stagiaire.xhtml" />
+	<ui:include src="/modals/ajouter_absence.xhtml" />
+
+	<aside id="side-overlay">
+		<!-- Side Header -->
+		<div class="content-header ">
+
+			<!-- User Info -->
+			<!-- 			<a class="link-fx text-body-color-dark fw-semibold fs-sm" -->
+			<!-- 				href="be_pages_generic_profile.html"> John Smith </a> -->
+			<!-- END User Info -->
+
+			<!-- Close Side Overlay -->
+			<!-- Layout API, functionality initialized in Template._uiApiLayout() -->
+			<button type="button" class="btn btn-sm btn-alt-danger ms-auto"
+				data-toggle="layout" data-action="side_overlay_close">
+				<i class="fa fa-fw fa-times"></i>
+			</button>
+			<!-- END Close Side Overlay -->
+		</div>
+		<!-- END Side Header -->
+
+
+	</aside>
+	<!-- END Side Overlay -->
+
+	<!-- Sidebar -->
+
+	<nav id="sidebar">
+		<!-- Sidebar Content -->
+
+		<!-- Side Header -->
+		<div class="content-header justify-content-lg-center">
+			<!-- Logo -->
+			<div>
+				<span class="smini-visible fw-bold tracking-wide fs-lg"> A<span
+					class="text-primary">T</span>
+				</span> <a class="link-fx fw-bold tracking-wide mx-auto"
+					href="/Projet_JEE_Web/index.xhtml"> <span class="smini-hidden">
+						<i class="fa fa-fire text-primary"> </i> <span
+						class="fs-4 text-dual">Aji</span> <span class="fs-4 text-primary">Tstagi</span>
+				</span>
+				</a>
+			</div>
+			<!-- END Logo -->
+
+			<!-- Options -->
+			<div>
+				<!-- Close Sidebar, Visible only on mobile screens -->
+				<!-- Layout API, functionality initialized in Template._uiApiLayout() -->
+				<button type="button" class="btn btn-sm btn-alt-danger d-lg-none"
+					data-toggle="layout" data-action="sidebar_close">
+					<i class="fa fa-fw fa-times"></i>
+				</button>
+				<!-- END Close Sidebar -->
+			</div>
+			<!-- END Options -->
+		</div>
+		<!-- END Side Header -->
+
+		<!-- Sidebar Scrolling -->
+		<div class="js-sidebar-scroll">
+			<!-- Side User -->
+			<!-- Visible only in mini mode -->
+			<!-- END Visible only in mini mode -->
+			<!-- Visible only in normal mode -->
+			<div class="content-side content-side-user px-0 py-0">
+				<div class="smini-hidden text-center mx-auto">
+
+					<ul class="list-inline ">
+						<!-- 						<li class="list-inline-item mt-3"><a -->
+						<!-- 							class="link-fx text-dual fs-sm fw-semibold text-uppercase " -->
+						<!-- 							href="#">J. Smith</a></li> -->
+						<li class="list-inline-item">
+							<!-- Layout API, functionality initialized in Template._uiApiLayout() -->
+							<a class="link-fx text-dual" data-toggle="layout"
+							data-action="dark_mode_toggle" href="javascript:void(0)"> <i
+								class="fa fa-moon"></i>
+						</a>
+						</li>
+
+						<li class="list-inline-item"><h:form>
+								<h:commandLink class="link-fx text-dual"
+									action="#{CompteManagedBean.logout}">
+									<i class="fa fa-sign-out-alt"></i> Logout
+        </h:commandLink>
+							</h:form></li>
+					</ul>
+				</div>
+			</div>
+			<!-- END Visible only in normal mode -->
+			<!-- END Side User -->
+
+			<!-- Side Navigation -->
+			<div class="content-side content-side-full">
+				<div>
+					<ul class="nav-main">
+						<!-- 						Assuming your managed bean name is "compteManagedBean" -->
+						<li class="nav-main-item"><a class="nav-main-link active"
+							href="/Projet_JEE_Web/chefPage.xhtml"> <i
+								class="nav-main-link-icon fa fa-house-user"></i> <span
+								class="nav-main-link-name">Dashboard</span>
+						</a></li>
+
+
+
+
+
+						<li class="nav-main-item"><a
+							class="nav-main-link nav-main-link-submenu" data-toggle="submenu"
+							aria-haspopup="true" aria-expanded="false" href="#"> <i
+								class="nav-main-link-icon fa fa-graduation-cap"></i> <span
+								class="nav-main-link-name">Stages</span>
+						</a>
+							<ul class="nav-main-submenu">
+								<li class="nav-main-item"><a class="nav-main-link"
+									href="/Projet_JEE_Web/lists/list_stages.xhtml"> <span
+										class="nav-main-link-name">Liste des Stages</span>
+								</a></li>
+								<li class="nav-main-item"><a class="nav-main-link"
+									href="/Projet_JEE_Web/lists/list_stages_affectes.xhtml"> <span
+										class="nav-main-link-name">Liste des Stages affectes</span>
+								</a></li>
+								<li class="nav-main-item"><a class="nav-main-link"
+									href="/Projet_JEE_Web/lists/list_stages_non_affectes.xhtml">
+										<span class="nav-main-link-name">Liste des Stages non
+											affectes</span>
+								</a></li>
+								<li class="nav-main-item"><a class="nav-main-link" href="#">
+										<span class="nav-main-link-name" data-bs-toggle="modal"
+										data-bs-target="#modal-ajouter-stage">Ajouter Un Stage</span>
+								</a></li>
+
+
+							</ul></li>
+
+
+						<li class="nav-main-item"><a
+							class="nav-main-link nav-main-link-submenu" data-toggle="submenu"
+							aria-haspopup="true" aria-expanded="false" href="#"> <i
+								class="nav-main-link-icon fa fa-users"></i> <span
+								class="nav-main-link-name">Stagiaires</span>
+						</a>
+							<ul class="nav-main-submenu">
+								<li class="nav-main-item"><a class="nav-main-link"
+									href="/Projet_JEE_Web/lists/list_stagiaires.xhtml"> <span
+										class="nav-main-link-name">Liste des Stagiaires</span>
+								</a></li>
+								<li class="nav-main-item"><a class="nav-main-link"
+									href="/Projet_JEE_Web/lists/list_stagiaires_nouveau.xhtml">
+										<span class="nav-main-link-name">Stagiaire Nouveaux</span>
+								</a></li>
+								<li class="nav-main-item"><a class="nav-main-link"
+									href="/Projet_JEE_Web/lists/list_stagiaires_en_cours.xhtml">
+										<span class="nav-main-link-name">Stagiaire en cours</span>
+								</a></li>
+								<li class="nav-main-item"><a class="nav-main-link"
+									href="/Projet_JEE_Web/lists/list_stagiaires_en_archive.xhtml">
+										<span class="nav-main-link-name">Stagiaire en archive</span>
+								</a></li>
+								<li class="nav-main-item"><a class="nav-main-link" href="#">
+										<span class="nav-main-link-name" data-bs-toggle="modal"
+										data-bs-target="#modal-ajouter-stagiaire">Ajouter Un
+											Stagiaire</span>
+								</a></li>
+							</ul></li>
+
+
+						<li class="nav-main-item"><a
+							class="nav-main-link nav-main-link-submenu" data-toggle="submenu"
+							aria-haspopup="true" aria-expanded="false" href="#"> <i
+								class="nav-main-link-icon fa fa-clipboard-user"></i> <span
+								class="nav-main-link-name">Comptes</span>
+						</a>
+							<ul class="nav-main-submenu">
+								<li class="nav-main-item"><a class="nav-main-link"
+									href="/Projet_JEE_Web/lists/list_comptes.xhtml"> <span
+										class="nav-main-link-name">Liste des comptes</span>
+								</a></li>
+								<li class="nav-main-item"><a class="nav-main-link" href="#">
+										<span class="nav-main-link-name" data-bs-toggle="modal"
+										data-bs-target="#modal-ajouter-compte">Ajouter Un
+											Compte</span>
+								</a></li>
+
+							</ul></li>
+
+
+						<li class="nav-main-item"><a
+							class="nav-main-link nav-main-link-submenu" data-toggle="submenu"
+							aria-haspopup="true" aria-expanded="false" href="#"> <i
+								class="nav-main-link-icon fa fa-user-gear"></i> <span
+								class="nav-main-link-name">Encadrant</span>
+						</a>
+							<ul class="nav-main-submenu">
+								<li class="nav-main-item"><a class="nav-main-link"
+									href="/Projet_JEE_Web/lists/list_encadrants.xhtml"> <span
+										class="nav-main-link-name">Liste des encadrants</span>
+								</a></li>
+								<li class="nav-main-item"><a class="nav-main-link"
+									href="/Projet_JEE_Web/lists/list_encadrants_affectes.xhtml">
+										<span class="nav-main-link-name">Liste des encadrants
+											affectes</span>
+								</a></li>
+								<li class="nav-main-item"><a class="nav-main-link"
+									href="/Projet_JEE_Web/lists/list_encadrants_non_affectes.xhtml">
+										<span class="nav-main-link-name">Liste des encadrants
+											non affectes</span>
+								</a></li>
+								<li class="nav-main-item"><a class="nav-main-link" href="#">
+										<span class="nav-main-link-name" data-bs-toggle="modal"
+										data-bs-target="#modal-ajouter-encadrant">Ajouter Un
+											Encadrant</span>
+								</a></li>
+							</ul></li>
+
+
+						<li class="nav-main-item"><a
+							class="nav-main-link nav-main-link-submenu" data-toggle="submenu"
+							aria-haspopup="true" aria-expanded="false" href="#"> <i
+								class="nav-main-link-icon fa fa-calendar-days"></i> <span
+								class="nav-main-link-name">Absence</span>
+						</a>
+							<ul class="nav-main-submenu">
+								<li class="nav-main-item"><a class="nav-main-link"
+									href="/Projet_JEE_Web/lists/list_absences.xhtml"> <span
+										class="nav-main-link-name">Liste des absences</span>
+								</a></li>
+								<li class="nav-main-item"><a class="nav-main-link" href="#">
+										<span class="nav-main-link-name" data-bs-toggle="modal"
+										data-bs-target="#modal-ajouter-absence">Marquer absence</span>
+								</a></li>
+							</ul></li>
+
+
+
+						<li class="nav-main-item"><a
+							class="nav-main-link nav-main-link-submenu" data-toggle="submenu"
+							aria-haspopup="true" aria-expanded="false" href="#"> <i
+								class="nav-main-link-icon fa fa-magnifying-glass"></i> <span
+								class="nav-main-link-name">Recherche</span>
+						</a>
+							<ul class="nav-main-submenu">
+								<li class="nav-main-item"><a class="nav-main-link"
+									href="/Projet_JEE_Web/modals/rechercher_encadrant.xhtml"> <span
+										class="nav-main-link-name">Chercher encadrant</span>
+								</a></li>
+								<li class="nav-main-item"><a class="nav-main-link"
+									href="/Projet_JEE_Web/modals/rechercher_stagiaire.xhtml"> <span
+										class="nav-main-link-name">Chercher Stagiaire</span>
+								</a></li>
+							</ul></li>
+
+
+
+					</ul>
+				</div>
+				<!-- END Side Navigation -->
+			</div>
+			<!-- END Sidebar Scrolling -->
+		</div>
+		<!-- Sidebar Content -->
+	</nav>
+	<!-- END Sidebar -->
+	<h:outputScript name="assets/js/codebase.app.min.js" />
+
+	<h:outputScript name="assets/js/lib/jquery.min.js" />
+
+	<h:outputScript
+		name="assets/js/plugins/datatables/jquery.dataTables.min.js" />
+
+	<h:outputScript
+		name="assets/js/plugins/datatables-bs5/js/dataTables.bootstrap5.min.js" />
+
+	<h:outputScript
+		name="assets/js/plugins/datatables-responsive/js/dataTables.responsive.min.js" />
+
+	<h:outputScript
+		name="assets/js/plugins/datatables-responsive-bs5/js/responsive.bootstrap5.min.js" />
+
+	<h:outputScript
+		name="assets/js/plugins/datatables-buttons/dataTables.buttons.min.js" />
+	<h:outputScript
+		name="assets/js/plugins/datatables-buttons-bs5/js/buttons.bootstrap5.min.js" />
+
+	<h:outputScript name="assets/js/pages/be_tables_datatables.min.js" />
+
+
+	<h:outputScript name="assets/js/plugins/flatpickr/flatpickr.min.js" />
+
+	<h:outputScript>
+    	Codebase.helpersOnLoad(['js-flatpickr']);
+    </h:outputScript>
+
+	<script>
+		function confirmDelete() {
+			return confirm("Are you sure you want to delete this record?");
+		}
+	</script>
+</h:body>
+</html>

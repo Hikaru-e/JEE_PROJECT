@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+
+	<title>PROJET JEE GESTION DES STAGIAIRES</title>
+
+	<!-- Icons -->
+	<!-- 	<link rel="shortcut icon" -->
+	<!-- 		href="resources/assets/media/favicons/favicon.png" /> -->
+	<!-- 	<link rel="icon" type="image/png" sizes="192x192" -->
+	<!-- 		href="assets/media/favicons/favicon-192x192.png" /> -->
+	<!-- 	<link rel="apple-touch-icon" sizes="180x180" -->
+	<!-- 		href="assets/media/favicons/apple-touch-icon-180x180.png" /> -->
+	<!-- END Icons -->
+
+
+	<h:outputStylesheet name="assets/css/codebase.min.css" />
+	<h:outputStylesheet name="assets/css/themes/corporate.min.css" />
+	
+<!-- 	<h:outputStylesheet name="assets/js/plugins/select2/css/select2.css" /> -->
+
+</h:head>
+
+<body>
+
+	<!-- 	<div id="page-loader" class="show"></div> -->
+
+	<div id="page-container" class="main-content-boxed remember-theme">
+
+		<ui:include src="navigation/header_login.xhtml" />
+
+		<!-- Main Container -->
+		<main id="main-container">
+			<!-- Page Content -->
+			<div class="bg-body-dark">
+				<div class="hero-static content content-full px-1">
+					<!-- To test if the login is incorrect, an alert will be shown here -->
+					<!-- Danger Alert -->
+					<c:if test="#{CompteManagedBean.login() eq 'false'}">
+						<div class="alert alert-danger alert-dismissible" role="alert">
+							<button type="button" class="btn-close" data-bs-dismiss="alert"
+								aria-label="Close"></button>
+							<h3 class="alert-heading fs-5 fw-bold mb-1">Error</h3>
+							<p class="mb-0">Login ou mot de passe est incorrect !</p>
+						</div>
+					</c:if>
+					<!-- END Danger Alert -->
+					<div class="row mx-0 justify-content-center">
+						<div class="col-lg-8 col-xl-6">
+							<!-- Header -->
+							<div class="py-4 text-center">
+								<a class="link-fx fw-bold" href="index.html"> <i
+									class="fa fa-fire"></i> <span class="fs-4 text-body-color">Aji</span><span
+									class="fs-4">Tstagi</span>
+								</a>
+								<h1 class="h3 fw-bold mt-4 mb-1">Bienvenue sur votre
+									plateforme de stages.</h1>
+								<h2 class="fs-5 lh-base fw-normal text-muted mb-0">C'est
+									une belle journée aujourd'hui !</h2>
+							</div>
+							<!-- END Header -->
+
+							<!-- Sign In Form -->
+							<!-- jQuery Validation functionality is initialized with .js-validation-signin class in js/pages/op_auth_signin.min.js which was auto compiled from _js/pages/op_auth_signin.js -->
+							<!-- For more examples you can check out https://github.com/jzaefferer/jquery-validation -->
+							<h:form class="js-validation">
+								<div class="block block-themed block-rounded block-fx-shadow ">
+									<div class="block-header ">
+										<h3 class="block-title ">Se connecter</h3>
+									</div>
+									<div class="block-content">
+										<div class="form-floating mb-4">
+											<h:inputText type="text" class="form-control"
+												id="login-email" name="login-email"
+												value="#{CompteManagedBean.email}"
+												placeholder="Enter your email" />
+											<label class="form-label" for="login-email">Email</label>
+										</div>
+										<div class="form-floating mb-4">
+											<h:inputSecret type="password" class="form-control"
+												id="login-password" name="login-password"
+												value="#{CompteManagedBean.password}"
+												placeholder="Enter your password" />
+											<label class="form-label" for="login-password">Password</label>
+										</div>
+										<div class="row">
+											<div class="col-sm-6 d-sm-flex align-items-center push">
+												<div class="form-check"></div>
+											</div>
+											<div class="col-sm-6 text-sm-end push">
+												<h:commandButton value="LOGIN"
+													action="#{CompteManagedBean.login}"
+													class="btn btn-lg btn-alt-primary fw-medium" />
+											</div>
+										</div>
+									</div>
+
+								</div>
+							</h:form>
+							<!-- END Sign In Form -->
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- END Page Content -->
+		</main>
+		<!-- END Main Container -->
+	</div>
+	<!-- END Page Container -->
+
+	<!--
+        Codebase JS
+
+        Core libraries and functionality
+        webpack is putting everything together at assets/_js/main/app.js
+    -->
+	<h:outputScript name="assets/js/codebase.app.min.js" />
+	<h:outputScript name="assets/js/lib/jquery.min.js" />
+	<h:outputScript name="assets/js/pages/op_auth_signin.min.js" />
+	<h:outputScript
+		name="assets/js/plugins/jquery-validation/jquery.validate.min.js" />
+
+	<h:outputScript name="assets/js/plugins/select2/js/select2.full.min.js" />
+	<h:outputScript
+		name="assets/js/plugins/jquery-validation/additional-methods.js" />
+		
+		
+<!-- 	<h:outputScript name="assets/js/custom.js" /> -->
+
+
+<!-- 	<script> -->
+<!-- 		Codebase.helpersOnLoad([ 'jq-select2' ]); -->
+<!-- 	</script> -->
+</body>
+</html>

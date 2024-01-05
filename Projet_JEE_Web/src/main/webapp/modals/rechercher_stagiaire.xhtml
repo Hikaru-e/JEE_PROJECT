@@ -1,0 +1,215 @@
+<!-- header.xhtml -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+	<title>Chercher Stagiaire</title>
+</h:head>
+<c:choose>
+	<c:when test="#{userRole eq 'chef' or userRole eq 'admin'}">
+
+<h:body>
+	<!-- Ajouter Modal -->
+	<div id="page-container"
+		class="sidebar-o sidebar-mini enable-page-overlay side-scroll page-header-fixed remember-theme page-header-modern main-content-narrow">
+
+		<!-- Side Overlay-->
+		<c:choose>
+			<c:when test="#{userRole eq 'chef'}">
+				<ui:include src="/navigation/sidebar_chef.xhtml" />
+			</c:when>
+
+			<!-- Include admin content if the user has the "admin" role -->
+			<c:when test="#{userRole eq 'admin'}">
+				<ui:include src="/navigation/sidebar_admin.xhtml" />
+			</c:when>
+		</c:choose>
+
+		<ui:include src="/navigation/header.xhtml" />
+
+		<!-- Main Container -->
+		<main id="main-container">
+
+			<!-- Page Content -->
+			<div class="content">
+
+
+				<!-- Labels on Top -->
+				<div class="block block-rounded">
+					<div class="block-header block-header-default">
+						<h3 class="block-title">Rechercher Stagiaire</h3>
+					</div>
+					<div class="block-content">
+						<div class="row mx-0 justify-content-center">
+							<!-- 							<div class="col-lg-8 col-xl-5"> -->
+							<!-- Form Labels on top - Default Style -->
+							<h:form>
+								<div class="block-content block-content-full">
+									<!-- Regular -->
+									<div class="row items-push">
+
+										<div class="col">
+											<div class="mb-4 d-flex justify-content-center">
+												<!-- ... Autres éléments du formulaire ... -->
+												<h:selectOneRadio value="#{StagiaireManagedBean.choice}">
+													<f:selectItem itemLabel="Rechercher par Nom"
+														itemValue="nom" />
+													<f:selectItem itemLabel="Rechercher par CIN"
+														itemValue="cin" />
+												</h:selectOneRadio>
+											</div>
+											<div class=" mb-4 d-flex justify-content-center">
+												<div class="row">
+													<div class="col-8">
+														<h:inputText value="#{StagiaireManagedBean.searchTerm}"
+															class="form-control" />
+													</div>
+													<div class="col-4">
+														<h:commandButton value="Rechercher"
+															class="btn btn-alt-primary"
+															action="#{StagiaireManagedBean.performSearch}" />
+													</div>
+
+												</div>
+
+
+											</div>
+
+
+
+
+
+
+											<!-- Afficher la liste ou les détails en fonction du choix -->
+											<h:panelGroup
+												rendered="#{StagiaireManagedBean.choice eq 'nom'}">
+												<!-- Afficher la liste -->
+												<h:dataTable value="#{StagiaireManagedBean.listStagiaire1}"
+													var="l"
+													class="table table-bordered table-striped table-vcenter js-dataTable-responsive">
+													<h:column>
+														<f:facet name="header">CIN</f:facet>
+														<h:outputText value="#{l.cin}" class="fw-semibold" />
+													</h:column>
+													<h:column>
+														<f:facet name="header">Nom</f:facet>
+														<h:outputText value="#{l.nom}" class="fw-semibold" />
+													</h:column>
+													<h:column>
+														<f:facet name="header">Prenom</f:facet>
+														<h:outputText value="#{l.prenom}" class="fw-semibold" />
+													</h:column>
+													<h:column>
+														<f:facet name="header">Date Naissance</f:facet>
+														<h:outputText value="#{l.dateN}">
+															<f:convertDateTime pattern="EEEE dd MMMM yyyy" />
+														</h:outputText>
+													</h:column>
+													<h:column>
+														<f:facet name="header">Ecole</f:facet>
+														<h:outputText value="#{l.ecole}" class="fw-semibold" />
+													</h:column>
+													<h:column>
+														<f:facet name="header">Email</f:facet>
+														<h:outputText value="#{l.email}" class="fw-semibold" />
+													</h:column>
+													<h:column>
+														<f:facet name="header">Encadrant</f:facet>
+														<h:outputText value="#{l.encadrant.cin}"
+															class="fw-semibold" />
+													</h:column>
+													<h:column>
+														<f:facet name="header">Sujet Stage</f:facet>
+														<h:outputText value="#{l.stage.sujet_stage}"
+															class="fw-semibold" />
+													</h:column>
+
+												</h:dataTable>
+											</h:panelGroup>
+
+											<h:panelGroup
+												rendered="#{StagiaireManagedBean.choice eq 'cin'}">
+												<!-- Afficher les détails d'un seul stagiaire -->
+												<h:dataTable value="#{StagiaireManagedBean.stagiaire1}"
+													var="l"
+													class="table table-bordered table-striped table-vcenter js-dataTable-responsive">
+													<h:column>
+														<f:facet name="header">CIN</f:facet>
+														<h:outputText value="#{l.cin}" class="fw-semibold" />
+													</h:column>
+													<h:column>
+														<f:facet name="header">Nom</f:facet>
+														<h:outputText value="#{l.nom}" class="fw-semibold" />
+													</h:column>
+													<h:column>
+														<f:facet name="header">Prenom</f:facet>
+														<h:outputText value="#{l.prenom}" class="fw-semibold" />
+													</h:column>
+													<h:column>
+														<f:facet name="header">Date Naissance</f:facet>
+														<h:outputText value="#{l.dateN}">
+															<f:convertDateTime pattern="EEEE dd MMMM yyyy" />
+														</h:outputText>
+													</h:column>
+													<h:column>
+														<f:facet name="header">Ecole</f:facet>
+														<h:outputText value="#{l.ecole}" class="fw-semibold" />
+													</h:column>
+													<h:column>
+														<f:facet name="header">Email</f:facet>
+														<h:outputText value="#{l.email}" class="fw-semibold" />
+													</h:column>
+													<h:column>
+														<f:facet name="header">Encadrant</f:facet>
+														<h:outputText value="#{l.encadrant.cin}"
+															class="fw-semibold" />
+													</h:column>
+													<h:column>
+														<f:facet name="header">Sujet Stage</f:facet>
+														<h:outputText value="#{l.stage.sujet_stage}"
+															class="fw-semibold" />
+													</h:column>
+												</h:dataTable>
+											</h:panelGroup>
+
+
+
+
+										</div>
+									</div>
+									<!-- END Regular -->
+
+								</div>
+							</h:form>
+							<!-- END Form Labels on top - Default Style -->
+
+
+							<!-- 							</div> -->
+						</div>
+						<!-- END Label on top Layout -->
+					</div>
+				</div>
+				<!-- END Labels on Top -->
+
+
+			</div>
+			<!-- END Page Content -->
+		</main>
+		<!-- END Main Container -->
+
+			<ui:include src="/navigation/footer.xhtml" />
+
+	</div>
+	<!-- END Page Container -->
+
+</h:body>
+</c:when>
+    <c:otherwise>
+        <ui:include src="/errors/error403.xhtml" />
+    </c:otherwise>
+</c:choose>
+
+</html>
